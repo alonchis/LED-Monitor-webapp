@@ -1,43 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
+<head>
+ <meta charset="utf-8"/>
+<!--    <link rel="icon" href="%PUBLIC_URL%/favicon.ico"/>-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1"/>-->
+    <meta name="theme-color" content="#000000"/>
     <meta
-      name="description"
-      content="Web site created using create-react-app"
+            name="description"
+            content="Web site created using create-react-app"
     />
-    <link rel="apple-touch-icon" href="logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
-
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
     <title>React App</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+<body>
+<div id="container"></div>
+<script type="text/babel">
+   class Navbar extends React.Component{
+      render() {
+         return (
+                 // <div>
+                 //    <ul id="nav">
+                 //       <li><a href="#">Home</a></li>
+                 //       <li><a href="#">About</a></li>
+                 //       <li><a href="#">FAQ</a></li>
+                 //       <li><a href="#">Contact</a></li>
+                 //    </ul>
+                 // </div>
+                 <>
+                    <Navbar bg="light">
+                       <Navbar.Brand href="#home">Brand link</Navbar.Brand>
+                    </Navbar>
+                    <br />
+                    <Navbar bg="light">
+                       <Navbar.Brand>Brand text</Navbar.Brand>
+                    </Navbar>
+                    <br />
+                    <Navbar bg="dark">
+                       <Navbar.Brand href="#home">
+                          <img
+                                  src="/logo.svg"
+                                  width="30"
+                                  height="30"
+                                  className="d-inline-block align-top"
+                                  alt="React Bootstrap logo"
+                          />
+                       </Navbar.Brand>
+                    </Navbar>
+                    <br />
+                    <Navbar bg="dark" variant="dark">
+                       <Navbar.Brand href="#home">
+                          <img
+                                  alt=""
+                                  src="/logo.svg"
+                                  width="30"
+                                  height="30"
+                                  className="d-inline-block align-top"
+                          />
+                          {' React Bootstrap'}
+                       </Navbar.Brand>
+                    </Navbar>
+                 </>
+         );
+      }
+   }
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+   class Circle extends React.Component{
+      render() {
+         var circleStyle = {
+            padding: 10,
+            margin: 20,
+            display: "inline-block",
+            backgroundColor: this.props.bgColor,
+            borderRadius: "50%",
+            width: 100,
+            height: 100,
+         };
+         return (
+                 <div style={circleStyle}>
+                 </div>
+         );
+      }
+   }
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
+     var colors = ["#393E41", "#E94F37", "#1C89BF", "#A1D363",
+         "#85FFC7", "#297373", "#FF8552", "#A40E4C"];
+
+     var renderData = [];
+
+     for (var i = 0; i < colors.length; i++) {
+         var color = colors[i];
+         renderData.push(<Circle key={i + color} bgColor={color}/>);
+     }
+    var destination = document.querySelector("#container");
+
+    ReactDOM.render(
+        <div>
+           <Navbar/>
+            {renderData}
+        </div>,
+        destination
+    );
+</script>
+</body>
 </html>
